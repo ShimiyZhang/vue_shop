@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
+import Welcome from '../components/Welcome.vue'
+import Users from '../components/user/Users.vue'
 
 Vue.use(VueRouter)
 
@@ -12,7 +14,16 @@ const router = new VueRouter({
     // 声明login页面的路由
     { path: '/login', component: Login },
     // 声明Home页面的路由
-    { path: '/home', component: Home }
+    {
+      path: '/home',
+      component: Home,
+      redirect: '/welcome',
+      // 声明Welcome页面为Home页面的子路由规则
+      children: [
+        { path: '/welcome', component: Welcome },
+        { path: '/users', component: Users }
+      ]
+    }
   ]
 })
 
